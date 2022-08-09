@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  street String
+  district String
+  city String
+  number Int
+  User User[]
+
+  @@map("address")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  addressId Int
+  address Address @relation(fields: [addressId], references: [id])
+  Session Session[]
+  Comment Comment[]
+  @@map("users")
+}
+
+model Session {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  token String
+
+  @@map("session")
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  Product Product[]
+  @@map("category")
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  commit String
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  productId Int
+  product Product @relation(fields: [productId],references: [id])
+  @@map("comment")
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  name String 
+  categoryId Int
+  category Category @relation(fields: [categoryId],references: [id])
+  amount Int
+  price Float
+  Comment Comment[]
+  PurchaseHistory PurchaseHistory[]
+  @@map("product")
+}
+
+model PurchaseHistory {
+  id Int @id @default(autoincrement())
+  productId Int
+  date DateTime
+  priceTotal Float
+  product Product @relation(fields: [productId],references: [id])
+}
