@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { Address, Session, User } from "@prisma/client";
 import * as userRepository from "../repositories/userRepository.js"
 import * as sessionRepository from "../repositories/sessionRepository.js"
-import { type } from 'os';
 
 //Type da interface User, que vem do Prisma
 export type CreateUserData = Omit<User, "id">;

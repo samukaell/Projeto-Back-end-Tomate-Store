@@ -28,6 +28,8 @@ model User {
   addressId Int
   address Address @relation(fields: [addressId], references: [id])
   Comment Comment[]
+  Product Product[]
+  PurchaseHistory PurchaseHistory[]
   @@map("users")
 }
 
@@ -59,8 +61,11 @@ model Comment {
 model Product {
   id Int @id @default(autoincrement())
   name String 
+  description String
   categoryId Int
   category Category @relation(fields: [categoryId],references: [id])
+  userId Int
+  user User @relation(fields: [userId],references: [id])
   amount Int
   price Float
   Comment Comment[]
@@ -74,4 +79,6 @@ model PurchaseHistory {
   date DateTime
   priceTotal Float
   product Product @relation(fields: [productId],references: [id])
+  userId Int
+  user User @relation(fields: [userId],references: [id])//Usuario que comprou o produto
 }
