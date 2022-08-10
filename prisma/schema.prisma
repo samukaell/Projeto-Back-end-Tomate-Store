@@ -72,12 +72,11 @@ model Product {
   PurchaseHistory PurchaseHistory[]
   @@map("product")
 }
-
 model PurchaseHistory {
   id Int @id @default(autoincrement())
-  productId Int
-  date DateTime
+  date String
   priceTotal Float
+  productId Int
   product Product @relation(fields: [productId],references: [id])
   userId Int
   user User @relation(fields: [userId],references: [id])//Usuario que comprou o produto
