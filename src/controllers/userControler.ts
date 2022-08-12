@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import * as userService from "../services/userService.js"
+import { faker } from "@faker-js/faker";
 
 export async function singIn(req: Request, res: Response) {
     const login = req.body
     const token = await userService.signIn(login);
-    res.status(200).send(token);
+    res.status(200).send({token});
 }
 
 export async function singUp(req: Request, res: Response) {
@@ -15,6 +16,8 @@ export async function singUp(req: Request, res: Response) {
 
 export async function createAddress(req: Request, res: Response) {
     const address:userService.CreateAddressData = req.body
-    await userService.createAddress(address);
-    res.sendStatus(200)
+    const addressId = await userService.createAddress(address);;
+    
+
+    res.status(200).send({addressId});
 }

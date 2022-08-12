@@ -25,7 +25,7 @@ async function createUser(user:CreateUserData) {
     })
 }
 async function createAddress(address: CreateAddressData) {
-    await prisma.address.create({
+     return await prisma.address.create({
         data:address
     })
 }

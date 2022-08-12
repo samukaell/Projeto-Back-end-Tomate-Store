@@ -56,7 +56,10 @@ export async function signIn(login) {
     }
 }
 export async function createAddress(address: CreateAddressData) {
-    await userRepository.createAddress(address);
+   const addressNew = await userRepository.createAddress(address);
+   const id = addressNew.id;
+   return id.toString();
+   
 }
 //_________________________________________//
 //Auxiliar 
