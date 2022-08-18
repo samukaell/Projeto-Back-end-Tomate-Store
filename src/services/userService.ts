@@ -65,6 +65,9 @@ export async function createAddress(address: CreateAddressData) {
    return id.toString();
    
 }
+export async function getUser(email: string) {
+    return await returnUser(email);
+}
 //_________________________________________//
 //Auxiliar 
 async function finduser(email: string) {
@@ -89,6 +92,13 @@ async function findUserSession(email: string) {
 }
 async function logIn(session: CreateSessionData) {
     await sessionRepository.createSession(session);
+}
+async function returnUser(email: string) {
+    const user = await userRepository.getUserByEmail(email);
+    return{
+        name:user.name,
+        image:user.image
+    }
 }
 async function quitSession(id: number) {
     await sessionRepository.deleteUserSessionById(id)

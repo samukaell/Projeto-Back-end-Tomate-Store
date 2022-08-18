@@ -29,10 +29,15 @@ async function createAddress(address: CreateAddressData) {
         data:address
     })
 }
-
+async function getUserByEmail(email: string) {
+    return await prisma.user.findFirst({
+        where:{email}
+    })
+}
 export {
     findUserByEmail,
     findUserById,
     createUser,
-    createAddress
+    createAddress,
+    getUserByEmail
 };
