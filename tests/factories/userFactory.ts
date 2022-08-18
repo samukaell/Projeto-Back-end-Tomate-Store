@@ -7,6 +7,8 @@ export default async function userFactory(user: CreateUserData) {
     data: {
       email:user.email,
       password: bcrypt.hashSync(user.password, 10),
+      name:user.name,
+      image:user.image,
       addressId:user.addressId
     },
   });

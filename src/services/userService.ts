@@ -10,7 +10,7 @@ export type CreateAddressData = Omit<Address, "id">;
 export type CreateSessionData = Omit<Session, "id">;
 
 //Serviços Principais
-export async function signUp(user) {
+export async function signUp(user:any) {
     //verificar se o email ja foi cadastrado
     const emailUser = await finduser(user.email);
     if(emailUser){
@@ -21,6 +21,8 @@ export async function signUp(user) {
         return createUser({
             email:user.email,
             password:user.password,
+            name:user.name,
+            image:user.image,
             addressId:1
         })
     }else{
@@ -37,6 +39,8 @@ export async function signIn(login) {
     //Verificar se o user ja esta logado
     const session = await findUserSession(login.email);
     if(session){
+        //Remover a sessao e da conflito
+        await quitSession(session.id);
         throw { type: "conflict", message: "The user is already logged in" };
     }
     //Comparar as senhas
@@ -73,6 +77,8 @@ async function createUser(user: CreateUserData) {
     await userRepository.createUser({
         email:user.email,
         password: passwordHash,
+        name:user.name,
+        image:user.image,
         addressId: user.addressId
     });
 
@@ -83,4 +89,7 @@ async function findUserSession(email: string) {
 }
 async function logIn(session: CreateSessionData) {
     await sessionRepository.createSession(session);
+}
+async function quitSession(id: number) {
+    await sessionRepository.deleteUserSessionById(id)
 }

@@ -31,6 +31,8 @@ describe("user tests", () => {
         const user = {
             email: faker.internet.email(),
             password: faker.internet.password(),
+            name: faker.name.firstName(),
+            image: faker.internet.url(),
             addressId: addressId.id
         };
         //Fazer a criação de user
@@ -57,7 +59,9 @@ describe("user tests", () => {
         const user = {
             email: faker.internet.email(),
             password: faker.internet.password(),
-            addressId:addressId.id
+            name: faker.name.firstName(),
+            image: faker.internet.url(),
+            addressId: addressId.id
         };
 
         const userCreate = await userFactory(user);
@@ -87,6 +91,7 @@ describe("Product Tests", () => {
         //Dados dos produtos
         const product = {
             name: faker.commerce.product(),
+            image: faker.internet.url(),
             description:faker.commerce.productDescription(),
             categoryId:categoryId.id,
             amount:999,
@@ -166,7 +171,9 @@ async function loginEasy() {
     const user = {
         email: faker.internet.email(),
         password: faker.internet.password(),
-        addressId:addressId.id
+        name: faker.name.firstName(),
+        image: faker.internet.url(),
+        addressId: addressId.id
     };
 
     const userCreate = await userFactory(user);
@@ -192,6 +199,8 @@ async function addProductEasy() {
     const user = {
         email: faker.internet.email(),
         password: faker.internet.password(),
+        name: faker.name.firstName(),
+        image: faker.internet.url(),
         addressId: addressId.id
     };
     const userId = await userFactory(user);
@@ -201,6 +210,7 @@ async function addProductEasy() {
     //Dados dos produtos
     const product = {
         name: faker.commerce.product(),
+        image: faker.internet.url(),
         description:faker.commerce.productDescription(),
         categoryId:categoryId.id,
         userId: userId.id,

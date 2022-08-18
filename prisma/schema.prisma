@@ -24,6 +24,8 @@ model Address {
 model User {
   id Int @id @default(autoincrement())
   email String @unique
+  name String
+  image String
   password String
   addressId Int
   address Address @relation(fields: [addressId], references: [id])
@@ -61,6 +63,7 @@ model Comment {
 model Product {
   id Int @id @default(autoincrement())
   name String 
+  image String
   description String
   categoryId Int
   category Category @relation(fields: [categoryId],references: [id])

@@ -16,8 +16,15 @@ async function createSession(user: CreateSessionData) {
     })
 }
 
+async function deleteUserSessionById(id: number){
+    await prisma.session.delete({
+        where:{id}
+    })
+}
+
 
 export{
     findUserByEmail,
-    createSession
+    createSession,
+    deleteUserSessionById
 }

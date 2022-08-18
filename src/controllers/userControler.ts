@@ -17,7 +17,5 @@ export async function singUp(req: Request, res: Response) {
 export async function createAddress(req: Request, res: Response) {
     const address:userService.CreateAddressData = req.body
     const addressId = await userService.createAddress(address);;
-    
-
     res.status(200).send({addressId});
 }
