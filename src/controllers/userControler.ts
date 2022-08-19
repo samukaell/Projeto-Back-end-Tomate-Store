@@ -6,7 +6,6 @@ export async function singIn(req: Request, res: Response) {
     const token = await userService.signIn(login);
     res.status(200).send({token});
 }
-
 export async function singUp(req: Request, res: Response) {
     const user = req.body;
     await userService.signUp(user);
@@ -17,16 +16,19 @@ export async function returnUser(req: Request, res: Response) {
     const user = await userService.getUser(email);
     res.send(user);
 }
-
 export async function returnUserById(req: Request, res: Response) {
     const {id} = req.params; 
     const userId = parseInt(id);
     const user = await userService.getUserById(userId);
     res.send(user);
 }
-
 export async function createAddress(req: Request, res: Response) {
     const address:userService.CreateAddressData = req.body
     const addressId = await userService.createAddress(address);;
     res.status(200).send({addressId});
+}
+export async function disconnect(req: Request, res: Response) {
+    const email = res.locals.user.email;
+    await userService.disconnect(email);
+    res.sendStatus(200);
 }

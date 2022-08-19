@@ -29,7 +29,9 @@ export async function purchaseHistory(amount: number, productId: any, userId: nu
     })
     
 }
-
+export async function getPurchaseHistory(userId: number) {
+    return await purchaseHistoryRepository.getPurchaseHistory(userId);
+}
 //_________________//
 //Serviços secundarios
 async function createPurchaseHistory(purchaseHistory: CreatePurchaseData) {

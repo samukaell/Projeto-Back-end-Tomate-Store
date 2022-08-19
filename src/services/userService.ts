@@ -71,6 +71,10 @@ export async function getUser(email: string) {
 export async function getUserById(id: number) {
     return await userRepository.getUserById(id);
 }
+export async function disconnect(email: string) {
+    const session = await sessionRepository.findUserByEmail(email);
+    await sessionRepository.deleteUserSessionById(session.id);
+}
 //_________________________________________//
 //Auxiliar 
 async function finduser(email: string) {

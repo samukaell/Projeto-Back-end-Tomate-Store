@@ -6,8 +6,13 @@ async function createPurchaseHistory(purchase: CreatePurchaseData) {
         data:purchase
     })
 }
-
+async function getPurchaseHistory(userId: number) {
+    return await prisma.purchaseHistory.findMany({
+        where:{userId}
+    })
+}
 
 export {
-    createPurchaseHistory
+    createPurchaseHistory,
+    getPurchaseHistory
 }
