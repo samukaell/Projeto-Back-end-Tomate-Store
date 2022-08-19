@@ -6,7 +6,13 @@ async function createComment(comment: CreateCommentData) {
         data:comment
     })
 }
+async function getCommentByProductId(productId: number) {
+    return prisma.comment.findMany({
+        where:{productId}
+    })
+}
 
 export{
     createComment,
+    getCommentByProductId
 }

@@ -68,6 +68,9 @@ export async function createAddress(address: CreateAddressData) {
 export async function getUser(email: string) {
     return await returnUser(email);
 }
+export async function getUserById(id: number) {
+    return await userRepository.getUserById(id);
+}
 //_________________________________________//
 //Auxiliar 
 async function finduser(email: string) {

@@ -18,6 +18,13 @@ export async function returnUser(req: Request, res: Response) {
     res.send(user);
 }
 
+export async function returnUserById(req: Request, res: Response) {
+    const {id} = req.params; 
+    const userId = parseInt(id);
+    const user = await userService.getUserById(userId);
+    res.send(user);
+}
+
 export async function createAddress(req: Request, res: Response) {
     const address:userService.CreateAddressData = req.body
     const addressId = await userService.createAddress(address);;

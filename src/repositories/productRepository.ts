@@ -26,9 +26,21 @@ async function buyProduct(amount: number,id: number) {
     })
 }
 
+async function getAllProducts() {
+    return prisma.product.findMany()
+}
+
+async function getProductId(id: number) {
+    return prisma.product.findFirst({
+        where:{id}
+    })
+}
+
 export{
     createProduct,
     createCategory,
     findProductById,
-    buyProduct
+    buyProduct,
+    getAllProducts,
+    getProductId
 }

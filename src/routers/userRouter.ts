@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { singUp,singIn,createAddress,returnUser } from "../controllers/userControler.js";
+import { singUp,singIn,createAddress,returnUser,returnUserById } from "../controllers/userControler.js";
 import validateSchema from "../middlewares/validatorSchema.js";
 import addressSchema from "../schemas/addressSchema.js";
 import userSchema from "../schemas/userSchema.js";
@@ -11,6 +11,7 @@ const userRouter = Router();
 userRouter.post("/signup",validateSchema(userSchema), singUp);
 userRouter.post("/signin",validateSchema(loginSchema), singIn);
 userRouter.post("/user",validateSchema(getUserSchema), returnUser);
+userRouter.get("/user/:id", returnUserById);
 userRouter.post("/address",validateSchema(addressSchema), createAddress);
 
 export default userRouter;

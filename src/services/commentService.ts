@@ -12,6 +12,10 @@ export async function addComment(comment: string, productId: number, userId: num
     });
 }
 
+export async function getCommentByProductId(productId: number) {
+    return await commentRepository.getCommentByProductId(productId);
+}
+
 //_________________//
 //Serviços secundarios
 async function createComment(comment: CreateCommentData) {

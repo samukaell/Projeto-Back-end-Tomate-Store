@@ -12,6 +12,12 @@ export async function addProduct(product: CreateProductData) {
 export async function createCategory(category: CreateCategoryData) {
     await productRepository.createCategory(category);
 }
+export async function getAllProducts() {
+    return productRepository.getAllProducts();
+}
+export async function getProductId(id: number) {
+    return productRepository.getProductId(id);
+}
 //_________________//
 //Serviços secundarios
 async function createProduct(product: CreateProductData) {
