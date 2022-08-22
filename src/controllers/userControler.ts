@@ -27,6 +27,11 @@ export async function createAddress(req: Request, res: Response) {
     const addressId = await userService.createAddress(address);;
     res.status(200).send({addressId});
 }
+export async function getAddress(req: Request, res: Response) {
+    const addressId = res.locals.user.addressId;
+    const address = await userService.getAddress(addressId);
+    res.send(address);
+}
 export async function disconnect(req: Request, res: Response) {
     const email = res.locals.user.email;
     await userService.disconnect(email);

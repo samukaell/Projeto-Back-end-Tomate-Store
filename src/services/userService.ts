@@ -65,11 +65,21 @@ export async function createAddress(address: CreateAddressData) {
    return id.toString();
    
 }
+export async function getAddress(id: number) {
+    return await userRepository.getAddress(id);
+}
 export async function getUser(email: string) {
     return await returnUser(email);
 }
 export async function getUserById(id: number) {
-    return await userRepository.getUserById(id);
+    const user = await userRepository.getUserById(id);
+    return{
+        name:user.name,
+        image:user.image,
+        email:user.email,
+        id:user.id,
+        addressId:user.addressId
+    }
 }
 export async function disconnect(email: string) {
     const session = await sessionRepository.findUserByEmail(email);
@@ -104,7 +114,8 @@ async function returnUser(email: string) {
     const user = await userRepository.getUserByEmail(email);
     return{
         name:user.name,
-        image:user.image
+        image:user.image,
+        id:user.id
     }
 }
 async function quitSession(id: number) {

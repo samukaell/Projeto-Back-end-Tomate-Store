@@ -17,6 +17,6 @@ export async function createPurchaseHistory(req: Request, res: Response) {
 
 export async function getPurchaseHistory(req: Request, res: Response) {
     const userId = res.locals.user.id
-    const purchaseHistory = purchaseHistoryService.getPurchaseHistory(userId);
+    const purchaseHistory = await purchaseHistoryService.getPurchaseHistory(userId);
     res.send(purchaseHistory);
 }
